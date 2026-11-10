@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "SF Arabic", "Geeza Pro", "Noto Naskh Arabic",
+    ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #f4efe6;
+  --color-surface: #fffaf3;
+  --color-ink: #162421;
+  --color-muted: #6d655c;
+  --color-line: #e4d9cb;
+  --color-sage: #1c6b56;
+  --color-sage-soft: #e6f3ee;
+  --color-clay: #c46a3a;
+  --color-clay-soft: #f8eadf;
+  --color-danger: #9d3b32;
+  --color-danger-soft: #f8e6e3;
+  --shadow-card: 0 1px 0 rgb(22 36 33 / 0.04), 0 16px 40px rgb(22 36 33 / 0.06);
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .tap {
+    transition: scale 150ms ease-out;
+  }
+
+  .tap:active:not(:disabled) {
+    scale: 0.96;
+  }
+
+  .flip-scene {
+    perspective: 1200px;
+  }
+
+  .flip-inner {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 220ms ease-out;
+  }
+
+  .flip-inner.is-back {
+    transform: rotateY(180deg);
+  }
+
+  .flip-face {
+    backface-visibility: hidden;
+  }
+
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner {
+    transition: none;
+  }
+
+  .tap:active:not(:disabled) {
+    scale: 1;
+  }
+}
