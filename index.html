@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مِفصل</title>
+  <meta name="description" content="رفيق مذاكرة للعلاج الطبيعي: عضلات، مدى حركة، بطاقات، وحالات." />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" />
+  <style>
+:root {
+  --bg: #f4efe6;
+  --surface: #fffaf3;
+  --ink: #162421;
+  --muted: #6d655c;
+  --line: #e4d9cb;
+  --sage: #1c6b56;
+  --sage-soft: #e6f3ee;
+  --clay: #c46a3a;
+  --clay-soft: #f8eadf;
+  --danger: #9d3b32;
+  --danger-soft: #f8e6e3;
+  --shadow: 0 1px 0 rgb(22 36 33 / 0.04), 0 16px 40px rgb(22 36 33 / 0.06);
+  font-family: "IBM Plex Sans Arabic", "Geeza Pro", "Noto Naskh Arabic", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:active:not(:disabled) { scale: 0.98; }
+h1, h2 { text-wrap: balance; margin: 0; }
+h1 { font-size: 2.4rem; letter-spacing: -0.03em; }
+h2 { font-size: 1.35rem; }
+p { text-wrap: pretty; }
+#app { max-width: 46rem; margin: 0 auto; padding: 1.4rem 1rem 7rem; display: flex; flex-direction: column; gap: 0.9rem; }
+.kicker { margin: 0; color: var(--sage); font-size: 0.78rem; font-weight: 600; }
+.muted, small { color: var(--muted); }
+.lead { font-size: 1.15rem; color: var(--muted); margin: 0; }
+.fine { color: var(--muted); font-size: 0.78rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.stats div, .panel, .grid button, .row-btn, .motion, .grades li, .note, input, .card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.15rem;
+}
+.stats div { padding: 0.7rem; }
+.stats span, .grid button span, .row-btn small, .motion small { display: block; color: var(--muted); font-size: 0.75rem; }
+.stats strong { font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+.panel { padding: 1.1rem; box-shadow: var(--shadow); }
+.plain, .row-btn, .choice, .ghost, .solid, .banner, .text, .back, .chip { border: 0; background: transparent; color: inherit; text-align: start; }
+.plain { width: 100%; }
+.facts { display: grid; gap: 0.7rem; margin: 0.8rem 0 0; }
+@media (min-width: 700px) { .facts { grid-template-columns: 1fr 1fr; } }
+.facts dt { color: var(--muted); font-size: 0.75rem; }
+.facts dd { margin: 0.15rem 0 0; font-size: 0.92rem; }
+.link { color: var(--sage); font-weight: 600; font-size: 0.92rem; }
+.grid { display: grid; gap: 0.7rem; }
+@media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
+.grid button, .banner, .row-btn, .choice { min-height: 2.75rem; padding: 0.85rem 1rem; }
+.grid button strong, .banner strong { display: block; }
+.banner { background: var(--clay-soft); border-radius: 1.15rem; }
+.banner span { color: var(--muted); font-size: 0.8rem; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 0.7rem; }
+input { min-height: 2.75rem; padding: 0 1rem; outline: none; }
+input:focus { border-color: var(--sage); }
+.chips { display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 0.45rem 0.8rem; white-space: nowrap; }
+.chip.on { background: var(--ink); color: var(--bg); }
+.chip.sage { background: var(--sage); color: var(--bg); border-color: var(--sage); }
+.list { display: flex; flex-direction: column; gap: 0.45rem; }
+.row-btn { display: flex; align-items: center; gap: 0.7rem; width: 100%; border: 1px solid var(--line); border-radius: 1.15rem; }
+.row-btn b { width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border-radius: 0.8rem; background: var(--bg); }
+.row-btn em { font-style: normal; font-size: 0.75rem; margin-inline-start: auto; }
+.back, .text { color: var(--sage); font-weight: 600; min-height: 2.75rem; }
+.note { background: var(--clay-soft); border: 0; padding: 0.9rem 1rem; }
+.note h2 { color: var(--clay); font-size: 0.95rem; }
+.ghost, .solid { border-radius: 999px; min-height: 2.75rem; padding: 0 1rem; font-weight: 600; }
+.ghost { border: 1px solid var(--line); background: var(--surface); }
+.solid { background: var(--sage); color: var(--bg); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.card { min-height: 16rem; border-radius: 1.25rem; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow); text-align: start; }
+.card strong { font-size: 1.45rem; }
+.card.back { background: var(--ink); color: var(--bg); }
+.card.back span, .card.back small { color: var(--sage-soft); }
+.segment { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem; }
+.segment button { border-radius: 999px; min-height: 2.6rem; }
+.segment button.on { background: var(--ink); color: var(--bg); }
+.motion { padding: 0.8rem 1rem; }
+.num { color: var(--sage); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.bar { height: 0.4rem; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--sage); }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-top: 0.7rem; }
+.choices button, .choice { border: 1px solid var(--line); border-radius: 0.9rem; background: var(--surface); min-height: 2.75rem; }
+.choices button.ok, .choice.ok, em.ok { border-color: var(--sage); background: var(--sage-soft); color: var(--sage); }
+.choices button.bad, .choice.bad, em.bad { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+.grades { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+.grades li { display: flex; gap: 0.7rem; padding: 0.75rem 0.9rem; }
+.grades b { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 0.8rem; background: var(--sage-soft); color: var(--sage); }
+.grades small { display: block; color: var(--muted); }
+.ink { background: var(--ink); color: var(--bg); border-radius: 1.15rem; padding: 1rem; }
+.ink p { color: var(--sage-soft); }
+.score { font-variant-numeric: tabular-nums; }
+.score small { font-size: 1.2rem; color: var(--muted); }
+.empty { text-align: center; color: var(--muted); }
+#nav {
+  position: fixed;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.15rem;
+  width: min(28rem, calc(100% - 1.2rem));
+  margin: 0;
+  padding: 0.2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+#nav button { flex: 1; border: 0; background: transparent; border-radius: 999px; min-height: 2.75rem; color: var(--muted); font-size: 0.78rem; font-weight: 600; }
+#nav button.on { background: var(--sage-soft); color: var(--sage); }
+button:disabled { opacity: 0.45; }
+@media (prefers-reduced-motion: reduce) { button:active { scale: 1; } }
+
+  </style>
+</head>
+<body>
+  <main id="app"></main>
+  <nav id="nav" aria-label="أقسام التطبيق"></nav>
+  <script>
+const regions = ["كتف", "مرفق وساعد", "ورك", "ركبة", "كاحل", "جذع وعنق"];
+
+const muscles = [
+  {
+    id: "supraspinatus",
+    en: "Supraspinatus",
+    ar: "فوق الشوكة",
+    region: "كتف",
+    group: "الكفة المدورة",
+    origin: "Supraspinous fossa",
+    insertion: "الوجه العلوي للحديبة الكبرى — greater tubercle",
+    action: "يبدأ التبعيد ويثبّت رأس العضد داخل التجويف الحقّاني",
+    nerve: "Suprascapular C5–C6",
+    practical: "اختبار Empty can: تبعيد في مستوى لوح الكتف مع إبهام لأسفل، والمقاومة للأسفل.",
+    note: "أكثر عضلات الكفة عرضة للاصطدام تحت الأخرم.",
+  },
+  {
+    id: "infraspinatus",
+    en: "Infraspinatus",
+    ar: "تحت الشوكة",
+    region: "كتف",
+    group: "الكفة المدورة",
+    origin: "Infraspinous fossa",
+    insertion: "الوجه الأوسط للحديبة الكبرى",
+    action: "دوران العضد للخارج، وتثبيت المفصل الحقّاني العضدي",
+    nerve: "Suprascapular C5–C6",
+    practical: "المرفق ملاصق للجذع ومثني ٩٠°، والمقاومة ضد الدوران للخارج.",
+    note: "مع Teres minor هما المحرّكان الأساسيان للدوران الخارجي.",
+  },
+  {
+    id: "subscapularis",
+    en: "Subscapularis",
+    ar: "تحت الكتف",
+    region: "كتف",
+    group: "الكفة المدورة",
+    origin: "Subscapular fossa",
+    insertion: "الحديبة الصغرى — lesser tubercle",
+    action: "دوران العضد للداخل",
+    nerve: "Upper & lower subscapular C5–C6",
+    practical: "Lift-off أو Belly press إذا كان الدوران الداخلي محدودًا.",
+    note: "العضلة الأمامية الوحيدة في الكفة المدورة.",
+  },
+  {
+    id: "deltoid",
+    en: "Deltoid",
+    ar: "الدالية",
+    region: "كتف",
+    group: "الكتف السطحي",
+    origin: "الثلث الوحشي للترقوة، الأخرم، وشوكة لوح الكتف",
+    insertion: "Deltoid tuberosity",
+    action: "الأوسط: تبعيد بعد ١٥°. الأمامي: ثني ودوران للداخل. الخلفي: بسط ودوران للخارج",
+    nerve: "Axillary C5–C6",
+    practical: "جلوس، تبعيد ٩٠°، المقاومة للأسفل عند الطرف البعيد للعضد.",
+    note: "إصابة العصب الإبطي تُضعف التبعيد وتُفقد الإحساس فوق الدالية (badge area).",
+  },
+  {
+    id: "biceps",
+    en: "Biceps brachii",
+    ar: "ذات الرأسين العضدية",
+    region: "مرفق وساعد",
+    group: "الحيز الأمامي للعضد",
+    origin: "الطويل: Supraglenoid tubercle. القصير: Coracoid process",
+    insertion: "Radial tuberosity والصفاق ذات الرأسين",
+    action: "ثني المرفق، بطح الساعد، وثني الكتف (الرأس الطويل)",
+    nerve: "Musculocutaneous C5–C6",
+    practical: "المرفق ٩٠° والساعد مبطوح، المقاومة ضد الثني.",
+    note: "اختبار Speed's يثير الرأس الطويل في الميزاب بين الحديبتين.",
+  },
+  {
+    id: "triceps",
+    en: "Triceps brachii",
+    ar: "ثلاثية الرؤوس العضدية",
+    region: "مرفق وساعد",
+    group: "الحيز الخلفي للعضد",
+    origin: "الطويل: Infraglenoid tubercle. الوحشي والإنسي: الوجه الخلفي للعضد",
+    insertion: "Olecranon",
+    action: "بسط المرفق. الرأس الطويل يساعد في بسط الكتف وتقريبه",
+    nerve: "Radial C7–C8",
+    practical: "انبطاح أو جلوس، الكتف ٩٠° والمرفق مثني، المقاومة ضد البسط.",
+    note: "الانعكاس الوتري ثلاثي الرؤوس يفحص جذر C7.",
+  },
+  {
+    id: "brachioradialis",
+    en: "Brachioradialis",
+    ar: "العضدية الكعبرية",
+    region: "مرفق وساعد",
+    group: "الحيز الخلفي للساعد",
+    origin: "Lateral supracondylar ridge",
+    insertion: "الناتئ الإبري للكعبرة",
+    action: "ثني المرفق والساعد في الوضع المتوسط بين الكب والبطح",
+    nerve: "Radial C5–C6",
+    practical: "الساعد mid-position (إبهام لأعلى)، المقاومة ضد الثني.",
+    note: "عضلة ثني يعصّبها العصب الكعبري، لا المتوسط.",
+  },
+  {
+    id: "fcr",
+    en: "Flexor carpi radialis",
+    ar: "الكعبرية المثنية للرسغ",
+    region: "مرفق وساعد",
+    group: "المثنيات السطحية",
+    origin: "اللقيمة الإنسية — common flexor origin",
+    insertion: "قاعدة المشط الثاني",
+    action: "ثني الرسغ وانحراف كعبري",
+    nerve: "Median C6–C7",
+    practical: "الرسغ مثني ومنحرف كعبريًا، المقاومة للبسط والانحراف الزندي.",
+    note: "ألم اللقيمة الإنسية (مرفق الغولف) يشمل منشأ هذه المجموعة.",
+  },
+  {
+    id: "iliopsoas",
+    en: "Iliopsoas",
+    ar: "الحرقفية القطنية",
+    region: "ورك",
+    group: "مثنيات الورك",
+    origin: "Iliacus: الحفرة الحرقفية. Psoas: أجسام وفروع T12–L5",
+    insertion: "Lesser trochanter",
+    action: "ثني الورك. القطنية تثبّت العمود القطني",
+    nerve: "Femoral (iliacus) والفروع الأمامية L1–L3 (psoas)",
+    practical: "جلوس، ثني الورك فوق ٩٠°، المقاومة للأسفل على الفخذ.",
+    note: "اختبار Thomas يكشف قِصر المثنية الحرقفية القطنية.",
+  },
+  {
+    id: "gmax",
+    en: "Gluteus maximus",
+    ar: "الألوية الكبرى",
+    region: "ورك",
+    group: "الألوية",
+    origin: "الحرقفة خلف الخط الألوي الخلفي، العجز، العصعص، والرباط العجزي الحدبي",
+    insertion: "الحدبة الألوية والسبيل الحرقفي الظنبوبي",
+    action: "بسط الورك ودورانه للخارج. الألياف العلوية تساعد في التبعيد",
+    nerve: "Inferior gluteal L5–S2",
+    practical: "انبطاح مع ثني الركبة (لتثبيط أوتار المأبض)، المقاومة ضد بسط الورك.",
+    note: "أقوى باسطة للورك، أساسية في النهوض من الجلوس وصعود السلم.",
+  },
+  {
+    id: "gmed",
+    en: "Gluteus medius",
+    ar: "الألوية الوسطى",
+    region: "ورك",
+    group: "الألوية",
+    origin: "الحرقفة بين الخطين الألويين الأمامي والخلفي",
+    insertion: "الوجه الوحشي للمدور الكبير",
+    action: "تبعيد الورك وتثبيت الحوض في طور الاستناد",
+    nerve: "Superior gluteal L4–S1",
+    practical: "استلقاء جانبي، الطرف العلوي مبعّد، المقاومة للأسفل.",
+    note: "ضعفها يعطي علامة Trendelenburg: هبوط الحوض للجهة المقابلة عند الوقوف على الطرف الضعيف.",
+  },
+  {
+    id: "rectus",
+    en: "Rectus femoris",
+    ar: "المستقيمة الفخذية",
+    region: "ركبة",
+    group: "رباعية الرؤوس",
+    origin: "AIIS وحافة الحقّ",
+    insertion: "الأحدوبة الظنبوبية عبر الرباط الرضفي",
+    action: "بسط الركبة وثني الورك",
+    nerve: "Femoral L2–L4",
+    practical: "جلوس، بسط الركبة من ٩٠°، المقاومة فوق الكاحل للأسفل.",
+    note: "الرأس الوحيد في الرباعية الذي يعبر مفصلين.",
+  },
+  {
+    id: "vmo",
+    en: "Vastus medialis",
+    ar: "المتسعة الإنسية",
+    region: "ركبة",
+    group: "رباعية الرؤوس",
+    origin: "الخط بين المدورين والشفة الإنسية للخط الخشن",
+    insertion: "الحافة الإنسية للرضفة والرباط الرضفي",
+    action: "بسط الركبة، والألياف المائلة توجّه الرضفة في آخر المدى",
+    nerve: "Femoral L2–L4",
+    practical: "يُلاحظ انقباضها في آخر ١٥–٢٠° من البسط.",
+    note: "ضعفها يُناقش في تتبع الرضفة، مع عدم اختزال إعادة التأهيل فيها وحدها.",
+  },
+  {
+    id: "biceps-fem",
+    en: "Biceps femoris",
+    ar: "ذات الرأسين الفخذية",
+    region: "ركبة",
+    group: "أوتار المأبض",
+    origin: "الطويل: الأحدوبة الإسكية. القصير: الخط الخشن",
+    insertion: "رأس الشظية",
+    action: "ثني الركبة وبسط الورك (الطويل) ودوران الساق للخارج والركبة مثنية",
+    nerve: "الطويل: Tibial. القصير: Common fibular. L5–S2",
+    practical: "انبطاح، ثني الركبة ٤٥–٩٠°، المقاومة ضد الثني.",
+    note: "الرأس القصير لا يعبر الورك، لذلك لا يبسطه.",
+  },
+  {
+    id: "tibant",
+    en: "Tibialis anterior",
+    ar: "الظنبوبية الأمامية",
+    region: "كاحل",
+    group: "الحيز الأمامي للساق",
+    origin: "اللُقمة الوحشية والثلثان العلويان للوجه الوحشي للظنبوب",
+    insertion: "العظم الإسفيني الإنسي وقاعدة المشط الأول",
+    action: "ثني ظهري وانقلاب للداخل",
+    nerve: "Deep fibular L4–L5",
+    practical: "جلوس، ثني ظهري مع انقلاب للداخل، المقاومة للأخمص والخارج.",
+    note: "هبوط القدم (foot drop) الكلاسيكي مع إصابة العصب الشظوي العميق أو العصب الشظوي الأصلي.",
+  },
+  {
+    id: "gastroc",
+    en: "Gastrocnemius",
+    ar: "الساقية / البطّية",
+    region: "كاحل",
+    group: "السمانة",
+    origin: "لقمتا الفخذ الإنسية والوحشية",
+    insertion: "العقب عبر وتر أخيل",
+    action: "ثني أخمصي، وثني الركبة",
+    nerve: "Tibial S1–S2",
+    practical: "الوقوف على أطراف الأصابع والركبة ممدودة، أو مقاومة الثني الأخمصي والركبة مستقيمة.",
+    note: "انعكاس أخيل يفحص جذر S1.",
+  },
+  {
+    id: "soleus",
+    en: "Soleus",
+    ar: "النعلية",
+    region: "كاحل",
+    group: "السمانة",
+    origin: "الخط النعلي للظنبوب والوجه الخلفي لرأس الشظية",
+    insertion: "العقب عبر وتر أخيل",
+    action: "ثني أخمصي مع ثني الركبة (تُعزل عن الساقية)",
+    nerve: "Tibial S1–S2",
+    practical: "رفع الكعب والركبة مثنية حوالي ٣٠–٤٥°.",
+    note: "عضلة وضعية بطيئة الألياف، مهمة في الوقوف الطويل.",
+  },
+  {
+    id: "peroneus",
+    en: "Fibularis longus",
+    ar: "الشظوية الطويلة",
+    region: "كاحل",
+    group: "الحيز الوحشي",
+    origin: "رأس الشظية والثلثان العلويان لوجهها الوحشي",
+    insertion: "الإسفيني الإنسي وقاعدة المشط الأول من الجهة الأخمصية",
+    action: "انقلاب للخارج وثني أخمصي، وتدعم القوس المستعرضة",
+    nerve: "Superficial fibular L5–S1",
+    practical: "الكاحل أخمصي قليلًا، المقاومة ضد الانقلاب للخارج.",
+    note: "ضعفها يُفقد التحكم بعد التواء الكاحل المتكرر للداخل.",
+  },
+  {
+    id: "trap",
+    en: "Upper trapezius",
+    ar: "شبه المنحرفة العلوية",
+    region: "جذع وعنق",
+    group: "حزام الكتف",
+    origin: "الناشزة القذالية الظاهرة والرباط القفوي حتى C7",
+    insertion: "الثلث الوحشي للترقوة والآخرم",
+    action: "رفع لوح الكتف وتدويره للأعلى",
+    nerve: "Accessory CN XI والجذور C3–C4",
+    practical: "الجلوس، رفع الكتف نحو الأذن ضد مقاومة للأسفل.",
+    note: "إصابة العصب الإضافي تُضعف رفع الكتف وتدوير اللوح للأعلى.",
+  },
+  {
+    id: "scm",
+    en: "Sternocleidomastoid",
+    ar: "القصية الترقوية الخشائية",
+    region: "جذع وعنق",
+    group: "الرقبة",
+    origin: "قبضة القص والثلث الإنسي للترقوة",
+    insertion: "الناتئ الخشائي",
+    action: "من جانب واحد: إمالة لنفس الجهة ودوران للجهة المقابلة. من الجانبين: ثني الرقبة",
+    nerve: "Accessory CN XI وC2–C3",
+    practical: "استلقاء، تدوير الرأس للجهة المقابلة ثم رفعها ضد مقاومة.",
+    note: "قِصرها أحادي الجانب من أسباب الصعر (torticollis).",
+  },
+  {
+    id: "lat",
+    en: "Latissimus dorsi",
+    ar: "العريضة الظهرية",
+    region: "جذع وعنق",
+    group: "الظهر السطحي",
+    origin: "النواتئ الشوكية T7–L5، اللفافة الصدرية القطنية، عرف الحرقفة، والأضلاع السفلية",
+    insertion: "قاع الميزاب بين الحديبتين",
+    action: "بسط العضد وتقريبه ودورانه للداخل",
+    nerve: "Thoracodorsal C6–C8",
+    practical: "انبطاح، الذراع ممدودة للخلف وللداخل، المقاومة ضد البسط.",
+    note: "تُستخدم وظيفيًا في الدفع على العكازات والانتقال من الكرسي.",
+  },
+  {
+    id: "pec",
+    en: "Pectoralis major",
+    ar: "الصدرية الكبرى",
+    region: "جذع وعنق",
+    group: "الجدار الصدري",
+    origin: "الترقوة، القص، والغضاريف الضلعية ١–٦",
+    insertion: "الشفة الوحشية للميزاب بين الحديبتين",
+    action: "تقريب ودوران للداخل. الرأس الترقوي: ثني. الرأس القصي: بسط من وضع الثني",
+    nerve: "Lateral & medial pectoral C5–T1",
+    practical: "استلقاء، أفقي تقريب عند ٩٠° تبعيد، المقاومة للخارج.",
+    note: "قِصرها يسحب الكتف للأمام ويضيّق المساحة تحت الأخرم.",
+  },
+  {
+    id: "ql",
+    en: "Quadratus lumborum",
+    ar: "المربعة القطنية",
+    region: "جذع وعنق",
+    group: "الجدار الخلفي للبطن",
+    origin: "عرف الحرقفة",
+    insertion: "الضلع الثاني عشر والنواتئ المستعرضة L1–L4",
+    action: "إمالة الجذع لنفس الجهة، وتثبيت الضلع ١٢ أثناء الشهيق",
+    nerve: "الفروع الأمامية T12–L4",
+    practical: "استلقاء جانبي، رفع الحوض عن السرير (hip hike) ضد مقاومة.",
+    note: "تُذكر كثيرًا في ألم الخاصرة الميكانيكي، دون أن تكون التشخيص الوحيد.",
+  },
+];
+
+const motions = [
+  { id: "sh-flex", joint: "الكتف", jointEn: "Shoulder", motion: "ثني", motionEn: "Flexion", norm: "0–180", end: 180 },
+  { id: "sh-ext", joint: "الكتف", jointEn: "Shoulder", motion: "بسط", motionEn: "Extension", norm: "0–60", end: 60 },
+  { id: "sh-abd", joint: "الكتف", jointEn: "Shoulder", motion: "تبعيد", motionEn: "Abduction", norm: "0–180", end: 180 },
+  { id: "sh-ir", joint: "الكتف", jointEn: "Shoulder", motion: "دوران للداخل", motionEn: "Internal rotation", norm: "0–70", end: 70 },
+  { id: "sh-er", joint: "الكتف", jointEn: "Shoulder", motion: "دوران للخارج", motionEn: "External rotation", norm: "0–90", end: 90 },
+  { id: "el-flex", joint: "المرفق", jointEn: "Elbow", motion: "ثني", motionEn: "Flexion", norm: "0–150", end: 150 },
+  { id: "fa-pro", joint: "الساعد", jointEn: "Forearm", motion: "كب", motionEn: "Pronation", norm: "0–80", end: 80 },
+  { id: "fa-sup", joint: "الساعد", jointEn: "Forearm", motion: "بطح", motionEn: "Supination", norm: "0–80", end: 80 },
+  { id: "wr-flex", joint: "الرسغ", jointEn: "Wrist", motion: "ثني", motionEn: "Flexion", norm: "0–80", end: 80 },
+  { id: "wr-ext", joint: "الرسغ", jointEn: "Wrist", motion: "بسط", motionEn: "Extension", norm: "0–70", end: 70 },
+  { id: "wr-rd", joint: "الرسغ", jointEn: "Wrist", motion: "انحراف كعبري", motionEn: "Radial deviation", norm: "0–20", end: 20 },
+  { id: "wr-ud", joint: "الرسغ", jointEn: "Wrist", motion: "انحراف زندي", motionEn: "Ulnar deviation", norm: "0–30", end: 30 },
+  { id: "hip-flex", joint: "الورك", jointEn: "Hip", motion: "ثني", motionEn: "Flexion", norm: "0–120", end: 120 },
+  { id: "hip-ext", joint: "الورك", jointEn: "Hip", motion: "بسط", motionEn: "Extension", norm: "0–30", end: 30 },
+  { id: "hip-abd", joint: "الورك", jointEn: "Hip", motion: "تبعيد", motionEn: "Abduction", norm: "0–45", end: 45 },
+  { id: "hip-ir", joint: "الورك", jointEn: "Hip", motion: "دوران للداخل", motionEn: "Internal rotation", norm: "0–45", end: 45 },
+  { id: "hip-er", joint: "الورك", jointEn: "Hip", motion: "دوران للخارج", motionEn: "External rotation", norm: "0–45", end: 45 },
+  { id: "kn-flex", joint: "الركبة", jointEn: "Knee", motion: "ثني", motionEn: "Flexion", norm: "0–135", end: 135 },
+  { id: "an-df", joint: "الكاحل", jointEn: "Ankle", motion: "ثني ظهري", motionEn: "Dorsiflexion", norm: "0–20", end: 20 },
+  { id: "an-pf", joint: "الكاحل", jointEn: "Ankle", motion: "ثني أخمصي", motionEn: "Plantarflexion", norm: "0–50", end: 50 },
+  { id: "an-inv", joint: "الكاحل", jointEn: "Ankle", motion: "انقلاب للداخل", motionEn: "Inversion", norm: "0–35", end: 35 },
+  { id: "an-ev", joint: "الكاحل", jointEn: "Ankle", motion: "انقلاب للخارج", motionEn: "Eversion", norm: "0–15", end: 15 },
+  { id: "cx-flex", joint: "العنق", jointEn: "Cervical", motion: "ثني", motionEn: "Flexion", norm: "0–45", end: 45 },
+  { id: "cx-ext", joint: "العنق", jointEn: "Cervical", motion: "بسط", motionEn: "Extension", norm: "0–45", end: 45 },
+  { id: "cx-rot", joint: "العنق", jointEn: "Cervical", motion: "دوران", motionEn: "Rotation", norm: "0–60", end: 60 },
+  { id: "lx-flex", joint: "القطن", jointEn: "Lumbar", motion: "ثني", motionEn: "Flexion", norm: "0–60", end: 60 },
+];
+
+const mmtGrades = [
+  { grade: "0", name: "Zero", ar: "لا انقباض", detail: "لا يُجسّ انقباض ولا تحدث حركة." },
+  { grade: "1", name: "Trace", ar: "أثر", detail: "انقباض يُرى أو يُجسّ بلا حركة في المفصل." },
+  { grade: "2", name: "Poor", ar: "ضعيف", detail: "مدى كامل مع إلغاء الجاذبية، بلا مقاومة." },
+  { grade: "3", name: "Fair", ar: "مقبول", detail: "مدى كامل ضد الجاذبية، بلا مقاومة خارجية." },
+  { grade: "4", name: "Good", ar: "جيّد", detail: "مدى كامل ضد الجاذبية مع مقاومة متوسطة." },
+  { grade: "5", name: "Normal", ar: "طبيعي", detail: "مدى كامل ضد الجاذبية مع مقاومة قصوى." },
+];
+
+const cards = [
+  {
+    id: "c-supra-n",
+    topic: "عصب",
+    front: "ما تعصيب Supraspinatus؟",
+    back: "Suprascapular nerve (C5–C6)",
+    detail: "نفس العصب يعصّب Infraspinatus. يمر من الثلمة فوق لوح الكتف.",
+  },
+  {
+    id: "c-start-abd",
+    topic: "عضلة",
+    front: "أي عضلة تبدأ تبعيد الكتف؟",
+    back: "Supraspinatus",
+    detail: "ثم تكمل Deltoid التبعيد. الشلل المعزول يُضعف بدء الحركة أكثر من قوتها في المنتصف.",
+  },
+  {
+    id: "c-axillary",
+    topic: "عصب",
+    front: "إصابة العصب الإبطي تُضعف أي عضلة أساسًا؟",
+    back: "Deltoid وTeres minor",
+    detail: "ويضعف الإحساس في منطقة الشارة فوق الدالية. شائعة بعد خلع أمامي للكتف.",
+  },
+  {
+    id: "c-empty",
+    topic: "اختبار",
+    front: "اختبار Empty can (Jobe) يفحص؟",
+    back: "Supraspinatus",
+    detail: "تبعيد في مستوى اللوح مع دوران داخلي (إبهام لأسفل) ومقاومة للأسفل. الألم أو الضعف إيجابي.",
+  },
+  {
+    id: "c-hawkins",
+    topic: "اختبار",
+    front: "Hawkins–Kennedy إيجابي يعني غالبًا؟",
+    back: "اصطدام تحت الأخرم",
+    detail: "الكتف ٩٠° ثني، ثم دوران داخلي قسري. ليس تشخيصًا نسيجيًا وحده.",
+  },
+  {
+    id: "c-lachman",
+    topic: "اختبار",
+    front: "Lachman يفحص أي رباط؟",
+    back: "ACL — الرباط الصليبي الأمامي",
+    detail: "الركبة مثنية ٢٠–٣٠°. أكثر حساسية من الدرج الأمامي في الإصابة الحادة.",
+  },
+  {
+    id: "c-mcmurray",
+    topic: "اختبار",
+    front: "McMurray يُستخدم لأي بنية؟",
+    back: "الغضروف الهلالي",
+    detail: "دوران الساق مع ثني وبسط الركبة. الطقطقة مع ألم تدعم إصابة الهلالي، ولا تنفيها وحدها.",
+  },
+  {
+    id: "c-thomas",
+    topic: "اختبار",
+    front: "اختبار Thomas الإيجابي يدل على؟",
+    back: "قِصر Iliopsoas",
+    detail: "المريض يمسك ركبة نحو الصدر. ارتفاع الفخذ الآخر عن السرير = قِصر مثنية الورك.",
+  },
+  {
+    id: "c-trend",
+    topic: "اختبار",
+    front: "علامة Trendelenburg الإيجابية تعني ضعف؟",
+    back: "Gluteus medius في طرف الوقوف",
+    detail: "الحوض يهبط في الجهة المقابلة. العصب: Superior gluteal.",
+  },
+  {
+    id: "c-slr",
+    topic: "اختبار",
+    front: "رفع الساق ممدودة (SLR) يستثير غالبًا؟",
+    back: "جذور قطنية / توتر العصب الوركي",
+    detail: "ألم مشع تحت الركبة قبل ٧٠° أكثر دلالة من شد أوتار المأبض.",
+  },
+  {
+    id: "c-phalen",
+    topic: "اختبار",
+    front: "Phalen الإيجابي يوجّه إلى؟",
+    back: "متلازمة النفق الرسغي — Median nerve",
+    detail: "ثني الرسغين كاملًا لـ ٦٠ ثانية. يزداد الضغط داخل النفق.",
+  },
+  {
+    id: "c-tinel",
+    topic: "اختبار",
+    front: "Tinel عند الرسغ ينقر على أي عصب؟",
+    back: "Median nerve",
+    detail: "التنميل في الإبهام والسبابة والوسطى ونصف البنصر الكعبري يدعم التهيج.",
+  },
+  {
+    id: "c-atfl",
+    topic: "اختبار",
+    front: "الدرج الأمامي للكاحل يفحص؟",
+    back: "ATFL — الرباط الكاحلي الشظوي الأمامي",
+    detail: "أكثر أربطة الكاحل تمزقًا في الالتواء للداخل والثني الأخمصي.",
+  },
+  {
+    id: "c-thompson",
+    topic: "اختبار",
+    front: "اختبار Thompson السلبي (بلا ثني أخمصي) يعني؟",
+    back: "تمزق وتر أخيل",
+    detail: "عصر بطن الساق والمريض منبطح. غياب الحركة علامة قوية على القطع.",
+  },
+  {
+    id: "c-c7",
+    topic: "عصب",
+    front: "انعكاس Triceps يفحص أي جذر غالبًا؟",
+    back: "C7",
+    detail: "C5: ذات الرأسين. C6: العضدية الكعبرية. S1: أخيل. L3–L4: الرضفة.",
+  },
+  {
+    id: "c-footdrop",
+    topic: "عصب",
+    front: "هبوط القدم بعد ضغط رأس الشظية يصيب أي عصب؟",
+    back: "Common fibular (peroneal) nerve",
+    detail: "يضعف Tibialis anterior والشظويات: سقوط القدم وصعوبة الانقلاب للخارج.",
+  },
+  {
+    id: "c-df-norm",
+    topic: "مدى",
+    front: "المدى الطبيعي للثني الظهري للكاحل؟",
+    back: "حوالي 0–20°",
+    detail: "حسب أرقام AAOS الشائعة للمذاكرة. أقل من ١٠° وظيفيًا يقيّد المشي.",
+  },
+  {
+    id: "c-knee-norm",
+    topic: "مدى",
+    front: "ثني الركبة الطبيعي التقريبي؟",
+    back: "0–135°",
+    detail: "صعود السلم يحتاج نحو ٩٠°، والنهوض من كرسي منخفض أكثر.",
+  },
+  {
+    id: "c-mmt3",
+    topic: "عضلة",
+    front: "درجة MMT 3 تعني؟",
+    back: "مدى كامل ضد الجاذبية بلا مقاومة",
+    detail: "2 = مدى كامل مع إلغاء الجاذبية. 4 = مقاومة متوسطة. 5 = مقاومة قصوى.",
+  },
+  {
+    id: "c-vmo",
+    topic: "عضلة",
+    front: "أي رأس من الرباعية يعبر الوركين والركبة؟",
+    back: "Rectus femoris",
+    detail: "منشأها AIIS. الباقي (المتسعات) أحادي المفصل ويبسط الركبة فقط.",
+  },
+  {
+    id: "c-scm",
+    topic: "عضلة",
+    front: "تقلص SCM الأيمن يدوّر الوجه لأي جهة؟",
+    back: "لليسار",
+    detail: "الإمالة لنفس الجهة، والدوران للجهة المقابلة. التعصيب: CN XI.",
+  },
+  {
+    id: "c-gmax-n",
+    topic: "عصب",
+    front: "تعصيب Gluteus maximus؟",
+    back: "Inferior gluteal nerve L5–S2",
+    detail: "أما Gluteus medius وminimus: Superior gluteal L4–S1.",
+  },
+];
+
+const cases = [
+  {
+    id: "case-imp",
+    title: "كتف يؤلم فوق الرأس",
+    tag: "كتف",
+    vignette:
+      "طالبة ٢٣ سنة تراجع العيادة بعد شهر من ألم كتف أيمن عند تمشيط شعرها ورفع الكتب. الألم في الوجه الأمامي الوحشي، بلا تنميل في اليد. Empty can مؤلم، وHawkins إيجابي. القوة ضد المقاومة شبه كاملة.",
+    question: "الأكثر اتساقًا مع الصورة الآن؟",
+    choices: [
+      "اصطدام تحت الأخرم مع تهيّج Supraspinatus",
+      "قطع كامل للكفة المدورة",
+      "متلازمة النفق الرسغي",
+      "عدم ثبات حقّاني متعدد الاتجاهات",
+    ],
+    answer: 0,
+    explain:
+      "الألم مع حركات فوق الرأس واختبارا الاستثارة الإيجابيان مع قوة محفوظة يرجّحان تهيّجًا/اصطدامًا لا قطعًا كاملًا. النفق الرسغي يعطي تنميلًا في توزيع المتوسط، وعدم الثبات يظهر بخوف أو انزلاق لا بألم قوس فقط.",
+    pearl: "القوة الضائعة مع Drop arm تقرّبك من القطع أكثر من الألم وحده.",
+  },
+  {
+    id: "case-acl",
+    title: "التواء في مباراة",
+    tag: "ركبة",
+    vignette:
+      "لاعب ٢١ سنة سمع «طقة» عند تغيير الاتجاه، وانتفخت الركبة خلال ساعتين. اليوم الثالث: Lachman لين مع نهاية رخوة، والدرج الخلفي ثابت، وماكموراي بلا طقطقة واضحة.",
+    question: "الرباط الأرجح إصابة؟",
+    choices: ["PCL", "ACL", "MCL فقط", "LCL"],
+    answer: 1,
+    explain:
+      "التغير المفاجئ مع صوت وانتفاخ سريع (نزيف داخل المفصل) ونهاية رخوة في Lachman صورة كلاسيكية للصليبي الأمامي. الدرج الخلفي الثابت يبعد PCL. الأربطة الجانبية تُفحص بضغط أروح/أفحس عند ٣٠°.",
+    pearl: "الانتفاخ خلال ساعات يوحي بدموي المفصل؛ انتفاخ اليوم التالي أميل للانصباب الزلالي.",
+  },
+  {
+    id: "case-l5",
+    title: "ألم ينزل تحت الركبة",
+    tag: "قطن",
+    vignette:
+      "موظف ٤٠ سنة، ألم قطني منذ أسبوعين بعد رفع صندوق، يمتد في الوجه الخلفي الوحشي للساق حتى ظهر القدم. SLR عند ٤٥° يكرر الألم المشع. الثني الظهري أضعف قليلًا من الجهة الأخرى. انعكاس أخيل محفوظ.",
+    question: "الجذر الأقرب للصورة؟",
+    choices: ["L3", "L4", "L5", "S1"],
+    answer: 2,
+    explain:
+      "ألم إلى ظهر القدم مع ضعف الثني الظهري يطابق L5 غالبًا. S1 ينزل للحافة الوحشية للقدم ويضعف الثني الأخمصي وانعكاس أخيل. L4 أقرب للوجه الإنسي والانعكاس الرضفي.",
+    pearl: "الألم الذي يتوقف فوق الركبة قد يكون إرجاعًا صلبيًا لا جذرًا.",
+  },
+  {
+    id: "case-ankle",
+    title: "نزول خاطئ من الرصيف",
+    tag: "كاحل",
+    vignette:
+      "المريضة التوت كاحلها للداخل مع ثني أخمصي. ألم وتورّم أمام الكعب الوحشي. الدرج الأمامي زاد مقارنة بالجهة السليمة. تستطيع المشي أربع خطوات مع عرج. لا ألم بالعظم عند جس الكعب أو قاعدة المشط الخامس.",
+    question: "البنية الأرجح، وما قرار الأشعة المبدئي حسب Ottawa؟",
+    choices: [
+      "ATFL، والأشعة غير مستطبة الآن",
+      "وتر أخيل، وأشعة عاجلة",
+      "الكعب الوحشي مكسور حتى بلا ألم عظمي",
+      "CFL فقط لأن الدرج الأمامي يفحصه",
+    ],
+    answer: 0,
+    explain:
+      "الالتواء للداخل مع الثني الأخمصي وألم أمام الشظية ودرج أمامي زائد = ATFL. قواعد أوتاوا: لا ألم عظمي في المناطق المحددة مع القدرة على أربع خطوات يقلل احتمال الكسر. Thompson يفحص أخيل لا هذا السيناريو.",
+    pearl: "الدرج الأمامي = ATFL. ميلان القعب (talar tilt) أقرب إلى CFL.",
+  },
+  {
+    id: "case-cts",
+    title: "تنميل ليلي في اليد",
+    tag: "يد",
+    vignette:
+      "سيدة ٥٢ سنة تستيقظ لتنفض يدها اليمنى. التنميل في الإبهام والسبابة والوسطى. Phalen يكرر الأعراض خلال ٤٠ ثانية. العضلة الضامة للإبهام (APB) ضعيفة قليلًا. الإحساس في ظهر اليد محفوظ.",
+    question: "التفسير الأدق؟",
+    choices: [
+      "انضغاط Median nerve داخل النفق الرسغي",
+      "جذر C7 لأن الوسطى متأثرة",
+      "عصب زندي في قناة غويون",
+      "شظوي أصلي",
+    ],
+    answer: 0,
+    explain:
+      "التوزيع الحسي الراحي للأصابع الثلاثة ونصف، مع Phalen وضعف APB، هو النفق الرسغي. ظهر اليد يعصّبه الفرع السطحي للكعبري غالبًا فيبقى محفوظًا. الزندي يصيب الخنصر ونصف البنصر الزندي.",
+    pearl: "ضعف ثم ضمور الرانفة علامة متأخرة، لا تنتظرها لتبدأ الخطة التحفظية.",
+  },
+  {
+    id: "case-gmed",
+    title: "عرج بعد مشي طويل",
+    tag: "ورك",
+    vignette:
+      "طالبة تلاحظ أن وركها «يسقط» يمينًا حين تقف على الرجل اليسرى بعد يوم تدريب. ألم وحشي فوق المدور الكبير. قوة التبعيد يسار ٣+/٥. ثني الورك والقرفصاء غير مؤلمين.",
+    question: "ما اسم العلامة، وأي عضلة؟",
+    choices: [
+      "Trendelenburg لضعف Gluteus medius اليسرى",
+      "Thomas لقِصر Iliopsoas",
+      "Ober لشد السبيل الحرقفي الظنبوبي فقط",
+      "Lachman لعدم ثبات الورك",
+    ],
+    answer: 0,
+    explain:
+      "هبوط الحوض للجهة المقابلة عند الاستناد على طرف = Trendelenburg، والعضلة المسؤولة هي الألوية الوسطى (والصغرى) لذلك الطرف. Thomas يكشف قِصر المثنية لا السقوط في المشي.",
+    pearl: "في المشي قد تميل الجذع نحو الطرف الضعيف لتعويض العزم — عرج تعويضي لا هبوط فقط.",
+  },
+];
+
+const quizBank = [
+  {
+    id: "q1",
+    prompt: "التعصيب الحركي لـ Deltoid هو",
+    choices: ["Axillary", "Radial", "Suprascapular", "Musculocutaneous"],
+    answer: 0,
+    explain: "العصب الإبطي C5–C6 يعصّب الدالية والمدورة الصغيرة.",
+  },
+  {
+    id: "q2",
+    prompt: "اندغام Supraspinatus يكون على",
+    choices: ["Lesser tubercle", "Greater tubercle", "Olecranon", "Coracoid"],
+    answer: 1,
+    explain: "الحديبة الكبرى. الحديبة الصغرى لـ Subscapularis.",
+  },
+  {
+    id: "q3",
+    prompt: "درجة MMT التي تعني مدى كامل ضد الجاذبية بلا مقاومة",
+    choices: ["2", "3", "4", "5"],
+    answer: 1,
+    explain: "3 Fair. الدرجة 2 تلغي الجاذبية.",
+  },
+  {
+    id: "q4",
+    prompt: "Lachman يُجرى والركبة مثنية تقريبًا",
+    choices: ["0°", "20–30°", "90°", "135°"],
+    answer: 1,
+    explain: "عند ٢٠–٣٠° يقل توتر أوتار المأبض مقارنة بالدرج عند ٩٠°.",
+  },
+  {
+    id: "q5",
+    prompt: "هبوط القدم الكلاسيكي يتبع إصابة",
+    choices: ["Tibial nerve", "Common fibular nerve", "Femoral nerve", "Obturator nerve"],
+    answer: 1,
+    explain: "العصب الشظوي الأصلي يمدّ الحيز الأمامي والوحشي.",
+  },
+  {
+    id: "q6",
+    prompt: "المدى الشائع لبسط الرسغ",
+    choices: ["0–20", "0–45", "0–70", "0–150"],
+    answer: 2,
+    explain: "بسط الرسغ حوالي ٠–٧٠، والثني ٠–٨٠.",
+  },
+  {
+    id: "q7",
+    prompt: "Gluteus medius يعصّبها",
+    choices: ["Inferior gluteal", "Superior gluteal", "Femoral", "Sciatic"],
+    answer: 1,
+    explain: "Superior gluteal L4–S1. الألوية الكبرى: Inferior gluteal.",
+  },
+  {
+    id: "q8",
+    prompt: "العضلة التي تبدأ تبعيد الكتف",
+    choices: ["Deltoid", "Supraspinatus", "Pectoralis major", "Latissimus dorsi"],
+    answer: 1,
+    explain: "فوق الشوكة تبدأ الحركة، والدالية تكملها.",
+  },
+  {
+    id: "q9",
+    prompt: "انعكاس أخيل يفحص غالبًا الجذر",
+    choices: ["L4", "L5", "S1", "C7"],
+    answer: 2,
+    explain: "S1. الرضفة L3–L4، وثلاثية الرؤوس C7.",
+  },
+  {
+    id: "q10",
+    prompt: "Phalen يستثير",
+    choices: ["Ulnar nerve عند المرفق", "Median nerve في النفق الرسغي", "Radial nerve", "ACL"],
+    answer: 1,
+    explain: "ثني الرسغ الكامل يرفع الضغط على المتوسط داخل النفق.",
+  },
+  {
+    id: "q11",
+    prompt: "Rectus femoris تنشأ من",
+    choices: ["Ischial tuberosity", "AIIS", "Greater trochanter", "Linea aspera فقط"],
+    answer: 1,
+    explain: "الشوكة الحرقفية الأمامية السفلية وحافة الحقّ.",
+  },
+  {
+    id: "q12",
+    prompt: "الثني الظهري الطبيعي للكاحل حوالي",
+    choices: ["0–5°", "0–20°", "0–50°", "0–90°"],
+    answer: 1,
+    explain: "٠–٢٠ ظهري، و٠–٥٠ أخمصي وفق الأرقام الشائعة.",
+  },
+  {
+    id: "q13",
+    prompt: "SCM اليمنى تدير الوجه إلى",
+    choices: ["اليمين", "اليسار", "لا دوران", "البسط فقط"],
+    answer: 1,
+    explain: "دوران للجهة المقابلة وإمالة لنفس الجهة.",
+  },
+  {
+    id: "q14",
+    prompt: "Thompson بلا حركة أخمصية يعني اشتباه",
+    choices: ["قطع أخيل", "قطع ACL", "شلل شظوي", "كسر سالم"],
+    answer: 0,
+    explain: "عصر السمانة يجب أن يثني الكاحل أخمصيًا إن كان الوتر متصلًا.",
+  },
+  {
+    id: "q15",
+    prompt: "Brachioradialis يعصّبها",
+    choices: ["Median", "Ulnar", "Radial", "Axillary"],
+    answer: 2,
+    explain: "استثناء مفيد: عضلة ثني يعصّبها الكعبري.",
+  },
+  {
+    id: "q16",
+    prompt: "الدرج الأمامي للكاحل يفحص",
+    choices: ["ATFL", "Deltoid ligament", "Spring ligament", "PCL"],
+    answer: 0,
+    explain: "الرباط الكاحلي الشظوي الأمامي.",
+  },
+  {
+    id: "q17",
+    prompt: "درجة 2 في MMT تعني",
+    choices: ["لا انقباض", "مدى كامل مع إلغاء الجاذبية", "مقاومة قصوى", "أثر بلا حركة"],
+    answer: 1,
+    explain: "Poor. الأثر بلا حركة هو الدرجة 1.",
+  },
+  {
+    id: "q18",
+    prompt: "اندغام Iliopsoas",
+    choices: ["Greater trochanter", "Lesser trochanter", "Tibial tuberosity", "ASIS"],
+    answer: 1,
+    explain: "المدور الصغير.",
+  },
+];
+
+function normalize(value) {
+  return value
+    .toLowerCase()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/[ً-ْ]/g, "")
+    .trim();
+}
+
+function shuffle(items, seed) {
+  const copy = [...items];
+  let state = seed || 1;
+  const rand = () => {
+    state = (state * 1664525 + 1013904223) % 4294967296;
+    return state / 4294967296;
+  };
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(rand() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+const KEY = "mifsal-html";
+
+function isoDay(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+function previousDay(key) {
+  const [y, m, d] = key.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  date.setDate(date.getDate() - 1);
+  return isoDay(date);
+}
+function load() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY) || "{}");
+    return {
+      known: raw.known || [],
+      bookmarks: raw.bookmarks || [],
+      streak: raw.streak || 0,
+      lastDay: raw.lastDay || null,
+      reviews: raw.reviews || {},
+      cases: raw.cases || {},
+      quizBest: raw.quizBest || 0,
+    };
+  } catch {
+    return { known: [], bookmarks: [], streak: 0, lastDay: null, reviews: {}, cases: {}, quizBest: 0 };
+  }
+}
+function save() {
+  localStorage.setItem(KEY, JSON.stringify(store));
+}
+function touch() {
+  const today = isoDay();
+  if (store.lastDay === today) return;
+  store.streak = store.lastDay === previousDay(today) ? store.streak + 1 : 1;
+  store.lastDay = today;
+}
+function esc(value) {
+  return String(value).replace(/[&<>"']/g, (ch) => {
+    const names = { "&": "amp", "<": "lt", ">": "gt", '"': "quot", "'": "#39" };
+    return "&" + names[ch] + ";";
+  });
+}
+
+const store = load();
+const ui = {
+  view: "home",
+  muscleId: null,
+  query: "",
+  region: "الكل",
+  romTab: "motion",
+  joint: motions[0].joint,
+  hidden: false,
+  picked: {},
+  topic: "الكل",
+  snoozed: [],
+  browse: 0,
+  flipped: false,
+  caseId: null,
+  round: null,
+  step: 0,
+  choice: null,
+  score: 0,
+  finished: false,
+};
+
+const app = document.querySelector("#app");
+const nav = document.querySelector("#nav");
+
+function go(view) {
+  ui.view = view;
+  if (view !== "atlas") ui.muscleId = null;
+  render();
+}
+
+nav.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-view]");
+  if (!button) return;
+  go(button.dataset.view);
+});
+
+app.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-act]");
+  if (!button) return;
+  const act = button.dataset.act;
+  const id = button.dataset.id;
+  if (act === "view") go(button.dataset.view);
+  if (act === "mmt") {
+    ui.romTab = "mmt";
+    go("rom");
+  }
+  if (act === "rom") {
+    ui.romTab = "motion";
+    go("rom");
+  }
+  if (act === "muscle") {
+    ui.muscleId = id;
+    ui.view = "atlas";
+    render();
+  }
+  if (act === "back-list") {
+    ui.muscleId = null;
+    render();
+  }
+  if (act === "region") {
+    ui.region = button.dataset.region;
+    render();
+  }
+  if (act === "bookmark") {
+    store.bookmarks = store.bookmarks.includes(id)
+      ? store.bookmarks.filter((item) => item !== id)
+      : [...store.bookmarks, id];
+    save();
+    render();
+  }
+  if (act === "joint") {
+    ui.joint = button.dataset.joint;
+    render();
+  }
+  if (act === "rom-tab") {
+    ui.romTab = button.dataset.tab;
+    render();
+  }
+  if (act === "toggle-rom") {
+    ui.hidden = !ui.hidden;
+    ui.picked = {};
+    render();
+  }
+  if (act === "pick-rom") {
+    const motion = button.dataset.motion;
+    if (ui.picked[motion] !== undefined) return;
+    ui.picked[motion] = Number(button.dataset.value);
+    render();
+  }
+  if (act === "topic") {
+    ui.topic = button.dataset.topic;
+    ui.snoozed = [];
+    ui.browse = 0;
+    ui.flipped = false;
+    render();
+  }
+  if (act === "flip") ui.flipped = !ui.flipped;
+  if (act === "know" || act === "later" || act === "next-card") onCard(act, id);
+  if (act === "reset-cards") {
+    store.known = [];
+    ui.snoozed = [];
+    ui.browse = 0;
+    ui.flipped = false;
+    save();
+    render();
+  }
+  if (act === "open-case") {
+    ui.caseId = id;
+    render();
+  }
+  if (act === "back-cases") {
+    ui.caseId = null;
+    render();
+  }
+  if (act === "answer-case") {
+    if (store.cases[id] !== undefined) return;
+    touch();
+    store.cases[id] = Number(button.dataset.choice);
+    save();
+    render();
+  }
+  if (act === "start-quiz") startQuiz();
+  if (act === "choose-quiz") chooseQuiz(Number(button.dataset.choice));
+  if (act === "next-quiz") nextQuiz();
+  render();
+});
+
+app.addEventListener("input", (event) => {
+  if (event.target.id === "q") {
+    ui.query = event.target.value;
+    render();
+    const field = document.querySelector("#q");
+    if (field) {
+      field.focus();
+      const end = field.value.length;
+      field.setSelectionRange(end, end);
+    }
+  }
+});
+
+function onCard(act, id) {
+  const deck = cards.filter((card) => ui.topic === "الكل" || card.topic === ui.topic);
+  const fresh = deck.filter((card) => !store.known.includes(card.id) && !ui.snoozed.includes(card.id));
+  const delayed = deck.filter((card) => !store.known.includes(card.id) && ui.snoozed.includes(card.id));
+  const done = fresh.length + delayed.length === 0;
+  if (act === "next-card" && done) {
+    ui.browse += 1;
+    ui.flipped = false;
+    return;
+  }
+  if (!id || done) return;
+  if (act === "know") {
+    touch();
+    if (!store.known.includes(id)) store.known.push(id);
+    const today = isoDay();
+    store.reviews[today] = (store.reviews[today] || 0) + 1;
+    ui.snoozed = ui.snoozed.filter((item) => item !== id);
+  }
+  if (act === "later") {
+    touch();
+    const today = isoDay();
+    store.reviews[today] = (store.reviews[today] || 0) + 1;
+    ui.snoozed = [...ui.snoozed.filter((item) => item !== id), id];
+  }
+  ui.flipped = false;
+  save();
+}
+
+function startQuiz() {
+  ui.round = shuffle(quizBank, Date.now() % 100000).slice(0, 8);
+  ui.step = 0;
+  ui.choice = null;
+  ui.score = 0;
+  ui.finished = false;
+  render();
+}
+function chooseQuiz(index) {
+  if (ui.choice !== null) return;
+  ui.choice = index;
+  if (index === ui.round[ui.step].answer) ui.score += 1;
+  render();
+}
+function nextQuiz() {
+  if (ui.step + 1 >= ui.round.length) {
+    touch();
+    store.quizBest = Math.max(store.quizBest, ui.score);
+    save();
+    ui.finished = true;
+  } else {
+    ui.step += 1;
+    ui.choice = null;
+  }
+  render();
+}
+
+function dayMuscle() {
+  const key = isoDay();
+  let hash = 0;
+  for (const ch of key) hash = (hash * 33 + ch.charCodeAt(0)) >>> 0;
+  return muscles[hash % muscles.length];
+}
+
+function optionsFor(end) {
+  const pool = [10, 15, 20, 30, 45, 50, 60, 70, 80, 90, 120, 135, 150, 180].filter((value) => value !== end);
+  const nearest = [...pool].sort((a, b) => Math.abs(a - end) - Math.abs(b - end)).slice(0, 3);
+  return [...nearest, end].sort((a, b) => a - b);
+}
+
+function renderNav() {
+  const items = [
+    ["home", "اليوم"],
+    ["atlas", "عضلات"],
+    ["rom", "المدى"],
+    ["cards", "بطاقات"],
+    ["cases", "حالات"],
+  ];
+  nav.innerHTML = items
+    .map(([id, label]) => {
+      const active = ui.view === id || (id === "home" && ui.view === "quiz");
+      return `<button type="button" data-view="${id}" class="${active ? "on" : ""}">${label}</button>`;
+    })
+    .join("");
+}
+
+function homeHtml() {
+  const muscle = dayMuscle();
+  const today = isoDay();
+  const reviewed = store.reviews[today] || 0;
+  const solved = Object.keys(store.cases).length;
+  return `
+    <p class="kicker">كلية العلاج الطبيعي</p>
+    <h1>مِفصل</h1>
+    <p class="muted">دفتر جيب للعملي والنظري: منشأ واندغام، مدى الحركة، واختبارات الشفوي.</p>
+    <section class="stats">
+      <div><span>أيام متتالية</span><strong>${store.streak || "—"}</strong></div>
+      <div><span>بطاقات اليوم</span><strong>${reviewed}</strong></div>
+      <div><span>أفضل اختبار</span><strong>${store.quizBest ? store.quizBest + "/8" : "—"}</strong></div>
+    </section>
+    <article class="panel">
+      <div class="row"><p class="kicker">عضلة اليوم</p><span class="muted">${solved}/6 حالات</span></div>
+      <button type="button" class="plain" data-act="muscle" data-id="${muscle.id}">
+        <h2>${esc(muscle.en)}</h2>
+        <p class="muted">${esc(muscle.ar)} · ${esc(muscle.region)}</p>
+        <dl class="facts">
+          <div><dt>المنشأ</dt><dd>${esc(muscle.origin)}</dd></div>
+          <div><dt>الاندغام</dt><dd>${esc(muscle.insertion)}</dd></div>
+          <div><dt>الوظيفة</dt><dd>${esc(muscle.action)}</dd></div>
+          <div><dt>التعصيب</dt><dd>${esc(muscle.nerve)}</dd></div>
+        </dl>
+        <span class="link">ملف العضلة</span>
+      </button>
+    </article>
+    <section class="grid">
+      <button type="button" data-act="view" data-view="cards"><strong>بطاقات المراجعة</strong><span>${store.known.length ? "عرفتِ " + store.known.length + " من " + cards.length : cards.length + " بطاقة"}</span></button>
+      <button type="button" data-act="view" data-view="cases"><strong>حالة سريرية</strong><span>ست صور قصيرة</span></button>
+      <button type="button" data-act="view" data-view="quiz"><strong>اختبار من ٨</strong><span>قبل السكشن</span></button>
+      <button type="button" data-act="rom"><strong>جدول المدى</strong><span>أرقام AAOS الشائعة</span></button>
+    </section>
+    <button type="button" class="banner" data-act="mmt"><strong>درجات القوة ٠–٥</strong><span>MMT كما يُطلب في العملي</span></button>
+    <p class="fine">للمذاكرة فقط، وليس تشخيصًا. أرقام المدى تقريبية وفق القيم الشائعة وقد تختلف المراجع.</p>
+  `;
+}
+
+function atlasHtml() {
+  if (ui.muscleId) return muscleHtml(ui.muscleId);
+  const q = normalize(ui.query);
+  const list = muscles.filter((muscle) => {
+    if (ui.region === "محفوظ" && !store.bookmarks.includes(muscle.id)) return false;
+    if (ui.region !== "الكل" && ui.region !== "محفوظ" && muscle.region !== ui.region) return false;
+    if (!q) return true;
+    return normalize(`${muscle.en} ${muscle.ar} ${muscle.nerve} ${muscle.action} ${muscle.group}`).includes(q);
+  });
+  const chips = ["الكل", "محفوظ", ...regions]
+    .map((item) => `<button type="button" data-act="region" data-region="${item}" class="chip ${ui.region === item ? "on" : ""}">${item}</button>`)
+    .join("");
+  const rows = list.length
+    ? list
+        .map(
+          (muscle) => `<button type="button" class="row-btn" data-act="muscle" data-id="${muscle.id}"><span><strong>${esc(muscle.en)}</strong><small>${esc(muscle.ar)} · ${esc(muscle.region)}</small></span>${store.bookmarks.includes(muscle.id) ? "<em>محفوظ</em>" : ""}</button>`,
+        )
+        .join("")
+    : `<p class="empty">لا نتائج. جرّبي اسم العصب أو المنطقة.</p>`;
+  return `
+    <p class="kicker">أطلس عملي</p>
+    <h1>العضلات</h1>
+    <p class="muted">${muscles.length} عضلة تتكرر في العملي والنظري.</p>
+    <input id="q" value="${esc(ui.query)}" placeholder="ابحثي بالعربي أو الإنجليزي" />
+    <div class="chips">${chips}</div>
+    <div class="list">${rows}</div>
+  `;
+}
+
+function muscleHtml(id) {
+  const muscle = muscles.find((item) => item.id === id);
+  if (!muscle) return "";
+  const saved = store.bookmarks.includes(muscle.id);
+  return `
+    <button type="button" class="back" data-act="back-list">كل العضلات</button>
+    <p class="kicker">${esc(muscle.region)} · ${esc(muscle.group)}</p>
+    <h1>${esc(muscle.en)}</h1>
+    <p class="lead">${esc(muscle.ar)}</p>
+    <dl class="facts">
+      <div><dt>المنشأ</dt><dd>${esc(muscle.origin)}</dd></div>
+      <div><dt>الاندغام</dt><dd>${esc(muscle.insertion)}</dd></div>
+      <div><dt>الوظيفة</dt><dd>${esc(muscle.action)}</dd></div>
+      <div><dt>التعصيب</dt><dd>${esc(muscle.nerve)}</dd></div>
+    </dl>
+    <section class="note"><h2>في العملي</h2><p>${esc(muscle.practical)}</p></section>
+    <p class="muted">${esc(muscle.note)}</p>
+    <button type="button" class="ghost" data-act="bookmark" data-id="${muscle.id}">${saved ? "محفوظة في الأطلس" : "احفظيها للمراجعة"}</button>
+  `;
+}
+
+function romHtml() {
+  const joints = [...new Set(motions.map((item) => item.joint))];
+  const tabs = `
+    <div class="segment">
+      <button type="button" data-act="rom-tab" data-tab="motion" class="${ui.romTab === "motion" ? "on" : ""}">مدى الحركة</button>
+      <button type="button" data-act="rom-tab" data-tab="mmt" class="${ui.romTab === "mmt" ? "on" : ""}">درجات MMT</button>
+    </div>`;
+  let body = "";
+  if (ui.romTab === "mmt") {
+    body = `<ol class="grades">${mmtGrades
+      .map((grade) => `<li><b>${grade.grade}</b><span><strong>${esc(grade.name)}</strong> <em>${esc(grade.ar)}</em><small>${esc(grade.detail)}</small></span></li>`)
+      .join("")}</ol><p class="note">الدرجات + و− تُستخدم بين الأرقام. في الشفوي صِفي الوضع: ضد الجاذبية أم بإلغائها.</p>`;
+  } else {
+    const rows = motions.filter((item) => item.joint === ui.joint);
+    body = `
+      <div class="chips">${joints.map((joint) => `<button type="button" data-act="joint" data-joint="${joint}" class="chip ${ui.joint === joint ? "sage" : ""}">${joint}</button>`).join("")}</div>
+      <div class="row"><p class="muted">${esc(rows[0].jointEn)}</p><button type="button" class="text" data-act="toggle-rom">${ui.hidden ? "أظهري الأرقام" : "اخفي الأرقام واختبري"}</button></div>
+      <div class="list">${rows
+        .map((motion) => {
+          const choices = ui.hidden
+            ? `<div class="choices">${optionsFor(motion.end)
+                .map((value) => {
+                  const picked = ui.picked[motion.id];
+                  const state = picked === undefined ? "" : value === motion.end ? "ok" : picked === value ? "bad" : "";
+                  return `<button type="button" data-act="pick-rom" data-motion="${motion.id}" data-value="${value}" class="${state}" ${picked !== undefined ? "disabled" : ""}>0–${value}</button>`;
+                })
+                .join("")}</div>`
+            : "";
+          const bar = Math.min(100, Math.round((motion.end / 180) * 100));
+          return `<article class="motion"><div class="row"><div><strong>${esc(motion.motion)}</strong><small>${esc(motion.motionEn)}</small></div>${ui.hidden ? "" : `<b class="num">${esc(motion.norm)}</b>`}</div><div class="bar"><i style="width:${bar}%"></i></div>${choices}</article>`;
+        })
+        .join("")}</div>`;
+  }
+  return `<p class="kicker">جونيوميتر وقوة</p><h1>المدى والقوة</h1>${tabs}${body}<p class="fine">للمذاكرة فقط. الأرقام تقريبية وفق AAOS.</p>`;
+}
+
+function cardsHtml() {
+  const deck = cards.filter((card) => ui.topic === "الكل" || card.topic === ui.topic);
+  const fresh = deck.filter((card) => !store.known.includes(card.id) && !ui.snoozed.includes(card.id));
+  const delayed = deck.filter((card) => !store.known.includes(card.id) && ui.snoozed.includes(card.id));
+  const done = fresh.length + delayed.length === 0;
+  const card = done ? deck[ui.browse % Math.max(deck.length, 1)] : fresh[0] || delayed[0];
+  const knownCount = store.known.filter((id) => deck.some((item) => item.id === id)).length;
+  const topics = ["الكل", "عضلة", "اختبار", "عصب", "مدى"]
+    .map((topic) => `<button type="button" data-act="topic" data-topic="${topic}" class="chip ${ui.topic === topic ? "on" : ""}">${topic}</button>`)
+    .join("");
+  if (!card) return `<h1>البطاقات</h1><p class="empty">لا بطاقات.</p>`;
+  return `
+    <div class="row"><div><p class="kicker">ذاكرة قصيرة</p><h1>البطاقات</h1></div><p class="muted">${knownCount}/${deck.length}</p></div>
+    <div class="chips">${topics}</div>
+    ${done ? `<p class="note">خلّصتي هذه المجموعة. <button type="button" class="text" data-act="reset-cards">امسحي «عرفتها»</button></p>` : ""}
+    <button type="button" class="card ${ui.flipped ? "back" : ""}" data-act="flip">
+      ${
+        ui.flipped
+          ? `<small>الإجابة</small><strong>${esc(card.back)}</strong><span>${esc(card.detail)}</span>`
+          : `<small>${esc(card.topic)}</small><strong>${esc(card.front)}</strong><span class="muted">اضغطي لقلب البطاقة</span>`
+      }
+    </button>
+    <div class="pair">
+      <button type="button" class="ghost" data-act="later" data-id="${card.id}" ${done ? "disabled" : ""}>أراجعها</button>
+      <button type="button" class="solid" data-act="${done ? "next-card" : "know"}" data-id="${card.id}">${done ? "البطاقة التالية" : "عرفتها"}</button>
+    </div>
+  `;
+}
+
+function casesHtml() {
+  if (ui.caseId) return caseHtml(ui.caseId);
+  const rows = cases
+    .map((item, index) => {
+      const choice = store.cases[item.id];
+      const mark = choice === undefined ? "" : choice === item.answer ? `<em class="ok">صواب</em>` : `<em class="bad">مراجعة</em>`;
+      return `<button type="button" class="row-btn" data-act="open-case" data-id="${item.id}"><b>${index + 1}</b><span><strong>${esc(item.title)}</strong><small>${esc(item.tag)}</small></span>${mark}</button>`;
+    })
+    .join("");
+  return `<p class="kicker">شفوي مختصر</p><h1>حالات</h1><p class="muted">اقرئي الصورة ثم اختاري. الإجابة تُحفظ في هذا المتصفح.</p><div class="list">${rows}</div>`;
+}
+
+function caseHtml(id) {
+  const item = cases.find((entry) => entry.id === id);
+  if (!item) return "";
+  const choice = store.cases[id];
+  const locked = choice !== undefined;
+  const options = item.choices
+    .map((label, index) => {
+      let cls = "";
+      if (locked && index === item.answer) cls = "ok";
+      else if (locked && choice === index) cls = "bad";
+      return `<button type="button" class="choice ${cls}" data-act="answer-case" data-id="${item.id}" data-choice="${index}" ${locked ? "disabled" : ""}>${esc(label)}</button>`;
+    })
+    .join("");
+  const explain = locked
+    ? `<section class="ink"><p><strong>${choice === item.answer ? "قراءة صحيحة." : "يعاد النظر."}</strong></p><p>${esc(item.explain)}</p><p><strong>لقطة للعملي. </strong>${esc(item.pearl)}</p></section>`
+    : "";
+  return `<button type="button" class="back" data-act="back-cases">كل الحالات</button><p class="kicker">${esc(item.tag)}</p><h1>${esc(item.title)}</h1><p>${esc(item.vignette)}</p><h2>${esc(item.question)}</h2><div class="list">${options}</div>${explain}`;
+}
+
+function quizHtml() {
+  if (!ui.round) {
+    return `<p class="kicker">قبل السكشن</p><h1>اختبار من ٨</h1><p class="muted">أفضل نتيجة على هذا المتصفح: <strong>${store.quizBest || "—"}</strong></p><button type="button" class="solid" data-act="start-quiz">ابدئي الجولة</button>`;
+  }
+  if (ui.finished) {
+    const line = ui.score >= 7 ? "مستوى عملي مطمئن." : ui.score >= 4 ? "الأساس موجود. أعيدي البطاقات." : "ارجعي للأطلس ثم أعيدي الجولة.";
+    return `<p class="kicker">النتيجة</p><h1 class="score">${ui.score}<small>/8</small></h1><p class="muted">${line}</p><div class="pair"><button type="button" class="solid" data-act="start-quiz">جولة جديدة</button><button type="button" class="ghost" data-act="view" data-view="home">العودة لليوم</button></div>`;
+  }
+  const item = ui.round[ui.step];
+  const options = item.choices
+    .map((label, index) => {
+      let cls = "";
+      if (ui.choice !== null && index === item.answer) cls = "ok";
+      else if (ui.choice === index) cls = "bad";
+      return `<button type="button" class="choice ${cls}" data-act="choose-quiz" data-choice="${index}" ${ui.choice !== null ? "disabled" : ""}>${esc(label)}</button>`;
+    })
+    .join("");
+  const more = ui.choice !== null ? `<p class="muted">${esc(item.explain)}</p><button type="button" class="solid" data-act="next-quiz">${ui.step + 1 === ui.round.length ? "النتيجة" : "التالي"}</button>` : "";
+  const width = ((ui.step + (ui.choice !== null ? 1 : 0)) / ui.round.length) * 100;
+  return `<div class="row"><span>${ui.step + 1}/8</span><span>الصحيح ${ui.score}</span></div><div class="bar"><i style="width:${width}%"></i></div><h1>${esc(item.prompt)}</h1><div class="list">${options}</div>${more}`;
+}
+
+function render() {
+  const pages = { home: homeHtml, atlas: atlasHtml, rom: romHtml, cards: cardsHtml, cases: casesHtml, quiz: quizHtml };
+  app.innerHTML = pages[ui.view]();
+  renderNav();
+}
+
+render();
+
+  </script>
+</body>
+</html>
